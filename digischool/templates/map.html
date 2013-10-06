@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="map">
+    
+</div>
+{% endblock content %}
+
+
+{% block script %}
+DS = {};
+    DS.resize = function(){
+    	h = $(window).height();
+        $('#map').height(h-51-16);
+    };
+	
+    
+    $(function(){
+   		DS.resize();
+        var layer = new L.StamenTileLayer("toner-lite");
+        var map = new L.Map("map", {
+            center: new L.LatLng(44.493889, 11.342778),
+            zoom: 12
+        });
+        map.addLayer(layer);
+        $.getJSON('https://dl.dropboxusercontent.com/u/27905658/ged/scuole%20bologna.geojson', function(data){
+        	L.geoJson(data).addTo(map);
+        });
+    });
+{% endblock script %}
