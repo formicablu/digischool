@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
       html, body {
         width: 100%;
@@ -32,7 +34,17 @@
         text-align:center;
         background-color:white;
       }
+      .title{
+        font-family: 'Bevan', cursive;
+        font-size:2em;
+        padding-bottom:5px;
+      }
+      {% block style %}
+      {% endblock style %}
     </style>
+
+    {% block templates %}
+    {% endblock templates %}
   </head>
   
   <body>
@@ -46,22 +58,23 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">DigiSchool</a>
+    <a class="navbar-brand" href="/">#DigiSchool</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Mappa</a></li>
+      <li><a href="/map">Mappa</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="#">Banda Larga</a></li>
+          <li><a href="#">Visibilità</a></li>
         </ul>
       </li>
-      <li><a href="#">Cerca Scuole</a></li>
-      <li><a href="#">Leggi</a></li>
-      <li><a href="#">Timelines</a></li>
+      <li><a href="/search">Cerca Scuola</a></li>
+      <li><a href="/evaluate">Valuta Scuola</a></li>
+      <li><a href="/timelines">Politiche Educative</a></li>
     </ul>
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
@@ -77,10 +90,13 @@
     {% endblock content %}
     <footer>&copy; 2013 - formicablu</footer>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.3"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js">></script>
-    
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://rawgithub.com/HenrikJoreteg/ICanHaz.js/master/ICanHaz.min.js"></script>
+    <!--<script src="http://sunng.info/heatcanvas/heatcanvas.js"></script>
+    <script src="http://sunng.info/heatcanvas/heatcanvas-leaflet.js"></script>-->
     <script>
     {% block script %}
     {% endblock script %}

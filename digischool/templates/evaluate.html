@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="title">{{school.name}}</h1>  
+    
+      <div class="row">
+        <div class="col-xs-3"> </div>
+        {%for year in school.all_metrics.keys%}
+        <div class="col-xs-7">{{year}}</div>
+        {%endfor%}
+        <div class="col-xs-2"> </div>
+      </div>
+      {%for metric in school.metrics.all%}
+
+      <div class="row">
+        <div class="col-xs-3">{{metric.metric_type.name|safe}}</div>
+        <div class="col-xs-7">{{metric.value}}</div>
+        <div class="col-xs-2 btn-group">
+          <button class="btn btn-success">Vero</button>
+          <button class="btn btn-danger">Falso</button>
+        </div>
+      </div>
+      {%endfor%}
+    <a class="col-xs-12 btn-warning btn btn-large">Conferma</a>
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block script %}
+DS = {};
+$(function(){
+	$( "#sortable" ).sortable();
+});
+{% endblock script %}

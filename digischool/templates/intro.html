@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+body{
+	background-image:url('http://img841.imageshack.us/img841/7721/maciachini.jpg');
+	background-position:top left;
+	background-size:cover;
+}
+
+      .jumbotron{
+        opacity:.80;
+      }
+      .jumbotron>*{
+        opacity:1;
+      }
+
+.subtitle{
+	font-size:1em;
+        font-family: 'Bevan', cursive;
+        padding-bottom:15px;
+}
+
+{% endblock style %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="jumbotron col-md-12">
+			<div class="title">#DigiSchool</div>
+			<div class="subtitle">La scuola italiana ha fatto tanta strada. <br/>Oggi ha davanti una nuova sfida: diventare digitale, innovativa, sostenibile. <br/>Scegli la tua scuola in base a queste caratteristiche. Aiutaci a valutarla.</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="jumbotron col-md-3">
+			<h2><i class="icon-search icon-fixed-width"></i>Cerca scuola</h2>
+			<p></p>
+			<a class="btn btn-success" href="/search">Vai <i class="icon-chevron-right icon-fixed-width"></i></a>
+		</div>
+	    
+		<div class="jumbotron col-md-4 col-md-offset-1">
+			<h2><i class="icon-globe icon-fixed-width"></i>Mappa delle scuole</h2>
+			<p></p>
+			<a class="btn btn-primary" href="/map">Vai <i class="icon-chevron-right icon-fixed-width"></i></a>
+		</div>
+
+		<div class="jumbotron col-md-3 col-md-offset-1">
+			<h2><i class="icon-star-half-empty icon-fixed-width"></i>Valuta scuola</h2>
+			<p></p>
+			<a class="btn btn-danger" href="/map">Vai <i class="icon-chevron-right icon-fixed-width"></i></a>
+		</div>
+	</div>
+	<div class="row">
+
+		<div class="jumbotron">
+			<h2><i class="icon-legal icon-fixed-width"></i>Come la politica ha cambiato la scuola</h2>
+			<p></p>
+			<a class="btn btn-warning" href="/timeline">Vai <i class="icon-chevron-right icon-fixed-width"></i></a>
+		</div>
+	</div>
+
+
+</div>
+{% endblock content %}

@@ -7,13 +7,30 @@
 {% endblock content %}
 
 
+{% block templates %}
+<script id="school_popup" type="text/html">
+  <div>
+    <h2>{% templatetag openvariable %}name{% templatetag closevariable %}</h2>
+    <table>
+        <tbody>
+            {% templatetag openvariable %}#metrics{% templatetag closevariable %}
+            <tr><th>{% templatetag openvariable %}0{% templatetag closevariable %}</th><td>{% templatetag openvariable %}1{% templatetag closevariable %}</td></tr>
+            {% templatetag openvariable %}/metrics{% templatetag closevariable %}
+        </tbody>
+    </table>
+    <a class="btn btn-small btn-danger" href="/evaluate?school={% templatetag openvariable %}id{% templatetag closevariable %}" target="_blank">Valuta<i class="icon-chevron-right icon-fixed-width"></i></a>
+  </div>
+</script>
+{% endblock templates %}
+
 {% block script %}
-DS = {};
+    DS = {};
     DS.resize = function(){
     	h = $(window).height();
         $('#map').height(h-51-16);
     };
 	
+    DS.mapping = {};
     
     $(function(){
    		DS.resize();
@@ -23,8 +40,38 @@ DS = {};
             zoom: 12
         });
         map.addLayer(layer);
-        $.getJSON('https://dl.dropboxusercontent.com/u/27905658/ged/scuole%20bologna.geojson', function(data){
-        	L.geoJson(data).addTo(map);
+     
+        $.getJSON('/map.meta', function(data){
+            DS.mapping = data;
+        });
+        data = [[44,11,1000]]
+        /*var heatmap = new L.TileLayer.HeatCanvas({},{'step':0.5,
+                'degree':HeatCanvas.LINEAR, 'opacity':0.5});
+        for(var i=0,l=data.length; i<l; i++) {
+            heatmap.pushData(data[i][0], data[i][1], data[i][2]);
+        }
+        map.addLayer(heatmap);
+        */
+        $.getJSON('/map.geojson', function(data){
+            L.geoJson(data,{
+                onEachFeature: function (feature, layer) {
+                    var modded = [];
+                    var head = [""];
+                    for (var y in feature.properties.metrics){
+                        head.push(y);
+                    }
+                    modded.push(head);
+                    for (var m in DS.mapping){
+                        var r = [];
+                        r.push(DS.mapping[m]);
+                        for (var y in feature.properties.metrics){
+                            r.push(feature.properties.metrics[y][m])
+                        }
+                        modded.push(r);
+                    }
+                    layer.bindPopup(ich.school_popup({"id":feature.properties.id,"name":feature.properties.name, "metrics":modded}).html());
+                }
+            }).addTo(map);
         });
     });
 {% endblock script %}

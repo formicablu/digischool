@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="title">Valuta scuola</h1>  
+    
+      <div class="row">
+        <select class="form-control " id="schools">
+          {%for school in schools%}
+          <option value="/evaluate?school={{school.id}}">{{school.name}}</option>
+          {%endfor%}
+        </select>
+      </div>
+    <a class="col-xs-12 btn-warning btn btn-large" id="confirm">Valuta <i class="icon-chevron-right"></i></a>
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block script %}
+DS = {};
+$(function(){
+  $('#schools').on('change', function(){
+    $('#confirm').attr('href', $('#schools').val());
+  });
+});
+{% endblock script %}

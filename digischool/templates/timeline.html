@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+      <h1 class="title">La marcia dell'alfabetizzazione</h1>
+    </div>
+
+</div>
+<center>
+<iframe src="https://www.thinglink.com/card/443389012623753217" type="text/html" width="972" height="798" border="0" seamless></iframe>
+</center>
+{% endblock content %}
+
+
+{% block script %}
+DS = {};
+$(function(){
+	$( "#sortable" ).sortable();
+});
+{% endblock script %}
