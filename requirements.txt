@@ -1,0 +1,7 @@
+Django==1.5.4
+South==0.8.2
+argparse==1.2.1
+django-crispy-forms==1.4.0
+django-olwidget==0.60.3
+psycopg2==2.5.1
+wsgiref==0.1.2
